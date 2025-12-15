@@ -6,11 +6,11 @@ const AdminSideBar = () => {
       <h1 className="text-xl font-bold mb-8">CERTIFY</h1>
 
       <nav className="space-y-3">
-        <p className="cursor-pointer hover:text-blue-400">Dashboard</p>
-        <p className="cursor-pointer hover:text-blue-400">Universities</p>
+        <p onClick={()=> window.location.href = '/admin/dashboard'} className="cursor-pointer hover:text-blue-400">Dashboard</p>
+        <p onClick={()=> window.location.href = '/admin/univerities'} className="cursor-pointer hover:text-blue-400">Universities</p>
         <p className="cursor-pointer hover:text-blue-400">Companies</p>
         <p className="cursor-pointer hover:text-red-400">Logout</p>
-        
+
         </nav>  
     </aside>
   )
