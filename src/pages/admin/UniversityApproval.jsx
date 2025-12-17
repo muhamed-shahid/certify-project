@@ -15,6 +15,12 @@ const initialUniversities = [
         email:"contact@xyz.edu",
         status:"Pending",
     },
+    {
+        id:3,
+        name:"LMN University",
+        email:"contact@lmn.edu",
+        status:"Approved",
+    },
 ];
 
 const UniversityApproval = () => {
@@ -57,13 +63,28 @@ const UniversityApproval = () => {
                                     <td className='p-3'>{uni.name}</td>
                                     <td className='p-3'>{uni.email}</td>
                                     <td className='p-3'>
-                                        <span className='px-3 py-1 text-sm rounded-full bg-yellow-100 text-yellow-700'>
+                                        <span className={`px-3 py-1 text-sm rounded-full ${getBadgeStyle(
+                                            uni.status
+                                        )}`}>
                                         {uni.status}
                                         </span>
                                     </td>
                                     <td className='p-3 space-x-2'>
-                                        <button onClick={uStatus(uni.id,"Approved")} className='bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded ml-2'>Approve</button>
-                                        <button onClick={uStatus(uni.id,"Rejected")} className='bg-red-600 hover:bg-red-700 text-white px-6 py-1 rounded mt-2 mr-1' >Reject</button>
+                                        {uni.status === "Pending"?(
+                                            <>
+                                        <button onClick={()=>uStatus(uni.id,"Approved")} className='bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-4 py-2 rounded-3xl shadow-md transition'>Approve</button>
+                                        <button onClick={()=>uStatus(uni.id,"Rejected")} className='bg-gradient-to-r from-rose-500 to-red-600
+             hover:from-rose-600 hover:to-red-700
+             text-white px-5 py-2 rounded-3xl
+             shadow-md transition mt-1' >Reject</button>
+                                        
+                                        </>
+                                        ):(
+                                          <span className="text-slate-500 text-sm">
+                          No action available
+                        </span>
+                      )}  
+                                        
                                     </td>
                                 </tr>
                             ))}
