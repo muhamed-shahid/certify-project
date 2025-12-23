@@ -16,12 +16,12 @@ const AdminDashboard = () => {
             <p className="text-3xl font-bold">12</p>
 
             </div>
-          <div className="bg-white rounded-xl shadow">
+          <div className="bg-white rounded-xl shadow mt-5">
             <h3 className="text-slate-600">Companies</h3>
             <p className="text-3xl font-bold">8</p>
 
             </div>
-          <div className="bg-white rounded-xl shadow">
+          <div className="bg-white rounded-xl shadow mt-5">
             <h3 className="text-slate-600">Certificates</h3>
             <p className="text-3xl font-bold">125</p>
 

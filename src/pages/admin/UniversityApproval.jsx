@@ -63,11 +63,24 @@ const UniversityApproval = () => {
                                     <td className='p-3'>{uni.name}</td>
                                     <td className='p-3'>{uni.email}</td>
                                     <td className='p-3'>
-                                        <span className={`px-3 py-1 text-sm rounded-full ${getBadgeStyle(
-                                            uni.status
-                                        )}`}>
-                                        {uni.status}
-                                        </span>
+                                        <span
+                        className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm ${getBadgeStyle(
+                          uni.status
+                        )}`}
+                      >
+                        <span
+                          className="h-2 w-2 rounded-full"
+                          style={{
+                            background:
+                              uni.status === "Approved"
+                                ? "#16a34a"
+                                : uni.status === "Rejected"
+                                ? "#dc2626"
+                                : "#d97706",
+                          }}
+                        />
+                        {uni.status}
+                      </span>
                                     </td>
                                     <td className='p-3 space-x-2'>
                                         {uni.status === "Pending"?(

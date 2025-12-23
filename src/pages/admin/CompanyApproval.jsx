@@ -92,7 +92,7 @@ const CompanyApproval = () => {
 
         <div className="p-6">
           <h2 className="text-2xl font-semibold mb-4">
-            Company Approvals
+            Company Approval Requests
           </h2>
 
           <div className="overflow-x-auto bg-white rounded-lg shadow">
@@ -141,20 +141,23 @@ const CompanyApproval = () => {
                         <div className="flex gap-2">
                           <button
                             onClick={() => openApproveBox(cmp)}
-                            className="px-3 py-1 bg-emerald-600 text-white rounded-md text-sm"
+                            className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-4 py-2 rounded-3xl shadow-md transition"
                           >
                             Approve
                           </button>
                           <button
                             onClick={() => openRejectBox(cmp)}
-                            className="px-3 py-1 bg-rose-600 text-white rounded-md text-"
+                            className="bg-gradient-to-r from-rose-500 to-red-600
+             hover:from-rose-600 hover:to-red-700
+             text-white px-5 py-2 rounded-3xl
+             shadow-md transition "
                           >
                             Reject
                           </button>
                         </div>
                       ) : (
                         <span className="text-sm text-slate-500">
-                          No action
+                          No action available
                         </span>
                       )}
                     </td>
