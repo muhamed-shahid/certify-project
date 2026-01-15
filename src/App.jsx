@@ -4,6 +4,7 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import UniversityApproval from "./pages/admin/UniversityApproval";
 import CompanyApproval from "./pages/admin/CompanyApproval";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
+import UniversityLogin from "./pages/university/UniversityLogin";
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
    <Routes>
     <Route path="/admin/login" element={<AdminLogin/>}/>
     <Route path="/admin/dashboard" element={<AdminProtectedRoute><AdminDashboard/></AdminProtectedRoute>}/>
-    <Route path="/admin/univerities" element={<AdminProtectedRoute><UniversityApproval/></AdminProtectedRoute>}/>
+    <Route path="/admin/universities" element={<AdminProtectedRoute><UniversityApproval/></AdminProtectedRoute>}/>
     <Route path="/admin/companies" element={<AdminProtectedRoute><CompanyApproval/></AdminProtectedRoute>}/>
+    <Route path="/university/login" element={<UniversityLogin/>}/>
    </Routes>
    </BrowserRouter>
    
