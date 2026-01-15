@@ -5,6 +5,7 @@ import UniversityApproval from "./pages/admin/UniversityApproval";
 import CompanyApproval from "./pages/admin/CompanyApproval";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import UniversityLogin from "./pages/university/UniversityLogin";
+import UniversityDashboard from "./pages/university/UniversityDashboard";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
     <Route path="/admin/universities" element={<AdminProtectedRoute><UniversityApproval/></AdminProtectedRoute>}/>
     <Route path="/admin/companies" element={<AdminProtectedRoute><CompanyApproval/></AdminProtectedRoute>}/>
     <Route path="/university/login" element={<UniversityLogin/>}/>
+    <Route path="/university/dashboard" element={<UniversityDashboard/>}/>
    </Routes>
    </BrowserRouter>
    
