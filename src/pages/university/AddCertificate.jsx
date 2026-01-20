@@ -1,6 +1,4 @@
 import React from 'react'
-import UniversitySidebar from '../components/UniversitySidebar'
-import UniversityHeader from '../components/UniversityHeader'
 
 const AddCertificate = () => {
   return (
