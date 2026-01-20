@@ -7,6 +7,7 @@ import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import UniversityLogin from "./pages/university/UniversityLogin";
 import UniversityDashboard from "./pages/university/UniversityDashboard";
 import AddCertificate from "./pages/university/AddCertificate";
+import ViewCertificate from "./pages/university/ViewCertificate";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
     <Route path="/university/login" element={<UniversityLogin/>}/>
     <Route path="/university/dashboard" element={<UniversityDashboard/>}/>
     <Route path="/university/addCertificate" element={<AddCertificate/>}/>
+    <Route path="/university/viewCertificate" element={<ViewCertificate/>}/>
    </Routes>
    </BrowserRouter>
    

@@ -11,7 +11,7 @@ const UniversitySidebar = () => {
             <p onClick={()=>window.location.href='/university/addCertificate'} className="cursor-pointer hover:text-indigo-200">
                 Add Certificate
             </p>
-            <p className="cursor-pointer hover:text-indigo-200">
+            <p onClick={()=>window.location.href='/university/viewCertificate'} className="cursor-pointer hover:text-indigo-200">
                 View Certificates
             </p>
             <p className="cursor-pointer hover:text-red-400">
