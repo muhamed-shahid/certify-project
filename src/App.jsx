@@ -6,6 +6,7 @@ import CompanyApproval from "./pages/admin/CompanyApproval";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import UniversityLogin from "./pages/university/UniversityLogin";
 import UniversityDashboard from "./pages/university/UniversityDashboard";
+import AddCertificate from "./pages/university/AddCertificate";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
     <Route path="/admin/companies" element={<AdminProtectedRoute><CompanyApproval/></AdminProtectedRoute>}/>
     <Route path="/university/login" element={<UniversityLogin/>}/>
     <Route path="/university/dashboard" element={<UniversityDashboard/>}/>
+    <Route path="/university/addCertificate" element={<AddCertificate/>}/>
    </Routes>
    </BrowserRouter>
    
