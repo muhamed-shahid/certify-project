@@ -8,6 +8,8 @@ import UniversityLogin from "./pages/university/UniversityLogin";
 import UniversityDashboard from "./pages/university/UniversityDashboard";
 import AddCertificate from "./pages/university/AddCertificate";
 import ViewCertificate from "./pages/university/ViewCertificate";
+import CompanyLogin from "./pages/company/CompanyLogin";
+import CompanyDashboard from "./pages/company/CompanyDashboard";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
     <Route path="/university/dashboard" element={<UniversityDashboard/>}/>
     <Route path="/university/addCertificate" element={<AddCertificate/>}/>
     <Route path="/university/viewCertificate" element={<ViewCertificate/>}/>
+    <Route path="/company/login" element={<CompanyLogin/>}/>
+    <Route path="/company/dashboard" element={<CompanyDashboard/>}/>
    </Routes>
    </BrowserRouter>
    
