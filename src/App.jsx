@@ -10,6 +10,7 @@ import AddCertificate from "./pages/university/AddCertificate";
 import ViewCertificate from "./pages/university/ViewCertificate";
 import CompanyLogin from "./pages/company/CompanyLogin";
 import CompanyDashboard from "./pages/company/CompanyDashboard";
+import VerifyCertificate from "./pages/company/VerifyCertificate";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
     <Route path="/university/viewCertificate" element={<ViewCertificate/>}/>
     <Route path="/company/login" element={<CompanyLogin/>}/>
     <Route path="/company/dashboard" element={<CompanyDashboard/>}/>
+    <Route path="/company/verifyCertificate" element={<VerifyCertificate/>}/>
    </Routes>
    </BrowserRouter>
    
