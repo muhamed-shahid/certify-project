@@ -1,8 +1,27 @@
 import React from 'react'
 import CompanySidebar from '../../components/CompanySidebar'
 import CompanyHeader from '../../components/CompanyHeader'
+import { useState } from 'react'
+import axios from "axios"
 
-const VerifyCertificate = () => {
+
+
+const [certificateNumber,setCertificateNumber]=useState("")
+const [result,setResult]=useState(null)
+
+
+const VerifyCertificate =async () => {
+  try{
+    const res = await axios.post("http://localhost:5055/api/certificates/verify",{certificateNumber})
+    setResult(res.data)
+  }
+  catch(err){
+    setResult({
+       success:false,
+            message:"Certificate not found"
+    })
+
+  }
   return (
      <div className="flex">
       <CompanySidebar />
@@ -20,24 +39,36 @@ const VerifyCertificate = () => {
               type="text"
               placeholder="Enter Certificate Number"
               className="w-full border p-2 rounded"
+              value={certificateNumber}
+              onChange={(event)=>setCertificateNumber(event.target.value)}
             />
 
-            <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-lg">
+            <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 rounded-lg"
+            onClick={VerifyCertificate}>
               Verify
             </button>
 
             {/* Result Card */}
-            <div className="border-t pt-4">
-              <p className="text-green-600 font-semibold">
-                ✅ Certificate is VALID
-              </p>
-
+            {result && (
+              <div className="border-t pt-4">
+              {result.success ? (
+                <div className="text-green-600 font-semibold">
+                ✅ {result.message}
+              
               <div className="mt-2 text-sm text-slate-600">
                 <p><b>Student:</b> John Doe</p>
                 <p><b>Course:</b> MERN Stack</p>
                 <p><b>University:</b> ABC University</p>
               </div>
+              </div>
+              ):(
+                <p className='text-red-600'>❌{result.message}</p>
+              )}
+
+              
             </div>
+            )}
+            
           </div>
         </div>
 
