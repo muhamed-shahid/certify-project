@@ -46,3 +46,54 @@ exports.verifyCertificate = async (req,res)=>{
 
 
 }
+
+exports.revokeCertificate = async (req,res)=>{
+    try{
+        const {id} = req.params
+
+        const certificate = await Certificate.findById(id)
+
+        if (!certificate){
+            return res.status(404).json({
+                success: false,
+                message:"Certificate not found"
+            })
+        }
+
+        if(certificate.status === "REVOKED"){
+            return res.status(400).json({
+                success: false,
+                message:"Certificate already revoked"
+            })
+        }
+
+        certificate.status = "REVOKED"
+        await certificate.save()
+
+        res.status(200).json({
+            success:true,
+            message:"Certificates revoked successfully",
+            data:certificate,
+        })
+    }
+    catch (error){
+        res.status(500).json({
+            success:false,
+            message:"Server error",
+        })
+    }
+}
+
+
+exports.allCertficates = async (req,res)=>{
+    try{
+        const certificates = await Certificate.find()
+        res.status(200).json(certificates)
+    }catch(error){
+        console.error(error)
+        res.status(500).json({
+            success:false,
+            message:"Server error",
+        })
+    }
+}
