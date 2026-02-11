@@ -97,3 +97,59 @@ exports.allCertficates = async (req,res)=>{
         })
     }
 }
+
+exports.addCertificate = async (req,res)=>{
+    try{
+        const {
+            certificateNumber,
+            studentName,
+            courseName,
+            universityName,
+            issueDate,
+        } = req.body;
+
+
+         if(!certificateNumber || !studentName || !courseName ||!universityName ||!issueDate){
+           return res.status(200).json({
+            success:false,
+            message:"All fields are required",
+           })
+    }
+
+    const existing = await Certificate.findOne({certificateNumber})
+    if (existing){
+        return res.status(400).json({
+            success:false,
+            message:"Certificate number already exists"
+        })
+    }
+
+
+    const newCertificate = new Certificate({
+        certificateNumber,
+        studentName,
+        courseName,
+        universityName,
+        issueDate,
+        status:"ACTIVE",
+    })
+
+    await newCertificate.save()
+
+    res.status(201).json({
+        success:true,
+        message:"Certificate added successfully",
+        data: newCertificate,
+    })
+    }
+
+    catch (err){
+        console.error(err);
+        res.status(500).json({
+            success:false,
+            message:"Server error"
+        })
+    }
+
+   
+}

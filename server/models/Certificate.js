@@ -21,7 +21,7 @@ const certificateSchema= new mongoose.Schema({
     
     },
 
-    UniversityName:{
+    universityName:{
         type: String,
         reuired: true,
     },
