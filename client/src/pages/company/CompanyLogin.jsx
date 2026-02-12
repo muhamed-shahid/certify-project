@@ -2,8 +2,20 @@ import React from 'react'
 
 const CompanyLogin = () => {
   return (
-    <section className='min-h-screen flex items-center justify-center bg-slate-100'>
-        <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
+    
+      <div
+  className="relative min-h-screen bg-cover"
+  style={{
+    backgroundImage: "url('/images/company-bg.jpg')",
+  }}
+>
+  {/* Dark Blue Overlay */}
+  <div className="absolute inset-0"></div>
+
+  {/* Content */}
+  <div className="relative z-10 flex items-center justify-center min-h-screen">
+    {/* Company Login Card */}
+     <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
             <h2 className="text-2xl font-bold text-center text-slate-800">Company Login</h2>
             <p className="text-center text-slate-500 mb-6">
                 Verify certificates securely
@@ -14,7 +26,10 @@ const CompanyLogin = () => {
                 <button className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white py-2 rounded-lg">Login</button>
             </form>
         </div>
-    </section>
+  </div>
+</div>
+ 
+
   )
 }
 
