@@ -12,6 +12,7 @@ import CompanyLogin from "./pages/company/CompanyLogin";
 import CompanyDashboard from "./pages/company/CompanyDashboard";
 import VerifyCertificate from "./pages/company/VerifyCertificate";
 import Home from "./pages/Home";
+import CompanyRegister from "./pages/company/CompanyRegister";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
     <Route path="/company/login" element={<CompanyLogin/>}/>
     <Route path="/company/dashboard" element={<CompanyDashboard/>}/>
     <Route path="/company/verifyCertificate" element={<VerifyCertificate/>}/>
+    <Route path="/company/register" element={<CompanyRegister/>}/>
     <Route path="/" element={<Home/>}/>
    </Routes>
    </BrowserRouter>

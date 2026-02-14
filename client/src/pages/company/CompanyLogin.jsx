@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const CompanyLogin = () => {
   const [formData, setFormData] = useState({
@@ -87,7 +89,7 @@ const CompanyLogin = () => {
             Login
           </button>
 
-          <p className="text-center">Don't have an account? <a href="#" className="text-blue-400 hover:underline">Register</a>
+          <p className="text-center text-sm text-gray-300 mt-6">Don't have an account?<Link to={"/company/register"} className="text-blue-400 hover:underline">Register</Link>
 </p>
 
         </form>
