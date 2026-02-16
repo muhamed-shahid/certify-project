@@ -68,3 +68,57 @@ exports.loginCompany = async (req,res)=>{
         
     }
 }
+
+
+
+exports.registerCompany = async (req,res)=>{
+    try{
+        const{companyName,email,password} = req.body
+
+
+        if(!companyName.trim()||!email.trim()||!password.trim())
+        {
+            return res.status(400).json({
+                success:true,
+                message:"All fields are required",
+            })
+        }
+
+
+        const existingCompany = await Company.findOne({email})
+
+        if(existingCompany){
+            return res,status(401).json({
+                success:false,
+                message:"Email already registered",
+            })
+        }
+
+
+        const hashedPassword = await bcrypt.hash(password,10)
+
+
+        const company = new Company({
+            companyName,
+            email,
+            password:hashedPassword,
+            status:"PENDING",
+        })
+
+        await new Company.save()
+
+
+        res.status(201).json({
+            success:true,
+            message:"Registration successfull await admin approval"
+        })
+    }
+    catch(err){
+        console.error(err)
+        res.status(500).json({
+            success:false,
+            message:"Server error",
+        })
+        
+    }
+}

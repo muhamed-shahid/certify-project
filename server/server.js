@@ -4,11 +4,13 @@ const cors = require("cors")
 require("dotenv").config()
 
 const certificateRoutes = require("./routes/certificateRouter")
+const companyRoutes = require("./routes/companyRouter")
 const app= express()
 
 app.use(cors());
 app.use(express.json());
 app.use("/api/certificates",certificateRoutes)
+app.use("/api/company",companyRoutes)
 mongoose.connect(process.env.MONGO_URL)
 .then(()=>{
     console.log("MongoDB connected");
