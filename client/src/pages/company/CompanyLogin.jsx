@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import toast from "react-hot-toast"
 
@@ -11,6 +11,8 @@ const CompanyLogin = () => {
     password: "",
   });
 
+  const navigate = useNavigate()
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -18,15 +20,19 @@ const CompanyLogin = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const res = axios.post("http://localhost:5055/api/company/login",formData)
+      const res = await axios.post("http://localhost:5055/api/company/login",formData)
       localStorage.setItem("token",res.data.token)
       toast.success("Login successfull")
-      Navigate("/company/dashboard")
+      navigate("/company/dashboard")
     }
     catch(err){
+      console.log("Full errr",err);
+      console.log("response",err.response);
+      
+      
       toast.error(err.response?.data?.message||"Login failed")
     }
   };
