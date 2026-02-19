@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken")
 
 exports.loginCompany = async (req,res)=>{
     try{
-        const [email,password] = req.body
+        const {email,password} = req.body
 
 
         if(!email||!password){
@@ -88,7 +88,7 @@ exports.registerCompany = async (req,res)=>{
         const existingCompany = await Company.findOne({email})
 
         if(existingCompany){
-            return res,status(401).json({
+            return res.status(401).json({
                 success:false,
                 message:"Email already registered",
             })
@@ -98,14 +98,14 @@ exports.registerCompany = async (req,res)=>{
         const hashedPassword = await bcrypt.hash(password,10)
 
 
-        const company = new Company({
+        const newCompany = new Company({
             companyName,
             email,
             password:hashedPassword,
             status:"PENDING",
         })
 
-        await new Company.save()
+        await newCompany.save()
 
 
         res.status(201).json({

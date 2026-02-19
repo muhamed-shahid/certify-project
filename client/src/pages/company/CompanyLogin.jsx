@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios"
+import toast from "react-hot-toast"
+
 
 
 const CompanyLogin = () => {
@@ -17,7 +20,15 @@ const CompanyLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    try{
+      const res = axios.post("http://localhost:5055/api/company/login",formData)
+      localStorage.setItem("token",res.data.token)
+      toast.success("Login successfull")
+      Navigate("/company/dashboard")
+    }
+    catch(err){
+      toast.error(err.response?.data?.message||"Login failed")
+    }
   };
 
   return (
