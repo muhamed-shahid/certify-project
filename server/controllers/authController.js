@@ -63,6 +63,14 @@ exports.login = async (req,res)=>{
             })
         }
 
+
+        if(user.role !== role){
+            return res.status(403).json({
+                success:false,
+                message:"invalid login portal"
+            })
+        }
+
         if(user.status !== "APPROVED"){
             return res.status(401).json({
                 success:false,

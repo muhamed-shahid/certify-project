@@ -23,7 +23,7 @@ const CompanyLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const res = await axios.post("http://localhost:5055/api/company/login",formData)
+      const res = await axios.post("http://localhost:5055/api/auth/login",formData)
       localStorage.setItem("token",res.data.token)
       toast.success("Login successfull")
       navigate("/company/dashboard")
