@@ -9,6 +9,7 @@ const CompanyLogin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
+    role:"COMPANY",
   });
 
   const navigate = useNavigate()

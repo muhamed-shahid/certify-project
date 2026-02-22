@@ -12,6 +12,7 @@ const CompanyRegister = () => {
         email:"",
         password:"",
         confirmPassword:"",
+        role:"COMPANY",
     })
 
     const handleChange = (e) =>{
@@ -23,7 +24,7 @@ const CompanyRegister = () => {
 
     const handleSubmit = async (e)=>{
         e.preventDefault()
-        const {companyName,email,password,confirmPassword} = formData
+        const {companyName,email,password,confirmPassword,role} = formData
     
 
     if(!companyName.trim()||!email.trim()||!password.trim()||!confirmPassword.trim()){
@@ -36,7 +37,7 @@ const CompanyRegister = () => {
         return
     }
     try{
-        const res =  await axios.post("http://localhost:5055/api/company/register",{companyName,email,password,})
+        const res =  await axios.post("http://localhost:5055/api/auth/register",{name:companyName,email,password,role})
         toast.success(res.data.message)
 
         setFormData({
@@ -44,6 +45,7 @@ const CompanyRegister = () => {
             email:"",
             password:"",
             confirmPassword:"",
+            role:"COMPANY",
         })
 
 
@@ -51,6 +53,8 @@ const CompanyRegister = () => {
             navigate("/company/login")
         },2000)
     } catch (err){
+        console.log(err);
+        
         toast.error(err.response?.data?.message||"Registration failed")
     }}
 

@@ -1,7 +1,44 @@
+import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const UniversityLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const [formData,setFormData]= useState({
+    email:"",
+    password:"",
+    role:"UNIVERSITY"
+  })
+
+  const navigate = useNavigate()
+
+  const handleChange = (e)=>{
+    setFormData({...formData,[e.target.name]:e.target.value,
+
+    })
+
+  }
+
+
+  const handleSubmit = async (e)=>{
+
+      e.preventDefault()
+
+      try{
+        const res = await axios.post("http://localhost:5055/api/auth/login",formData)
+        localStorage.setItem("token",res.data.token)
+        toast.success("Login successfull")
+        navigate("/university/dashboard")
+
+      
+
+    } catch(err){
+      console.log(err);
+      toast.error(err.response?.data?.message||"Login failed")
+      
+    }}
 
   return (
     <div className="relative h-screen w-full">
@@ -27,12 +64,15 @@ const UniversityLogin = () => {
             Login
           </h2>
 
-          {/* Username */}
+<form onSubmit={handleSubmit}>
+            {/* Username */}
           <div className="mb-5">
             <label className="text-sm text-white/80">User Name</label>
             <input
               type="text"
-              placeholder="User Name"
+              placeholder="User Name/Email"
+              onChange={handleChange}
+              value={formData.email}
               className="w-full bg-transparent border border-white/30
                          rounded-md px-4 py-2 mt-1
                          text-white placeholder-white/60
@@ -47,6 +87,8 @@ const UniversityLogin = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
                 className="w-full bg-transparent border border-white/30
                            rounded-md px-4 py-2 pr-10
                            text-white placeholder-white/60
@@ -64,15 +106,16 @@ const UniversityLogin = () => {
 
           {/* Buttons */}
           <div className="flex gap-4">
-            <button className="flex-1 bg-indigo-600 hover:bg-indigo-700
+            <button type="submit" className="flex-1 bg-indigo-600 hover:bg-indigo-700
                                text-white py-2 rounded-md font-medium">
               Login
             </button>
-            <button className="flex-1 bg-indigo-500 hover:bg-indigo-600
+            <button onClick={()=>navigate("university/register")} className="flex-1 bg-indigo-500 hover:bg-indigo-600
                                text-white py-2 rounded-md font-medium">
               Register
             </button>
           </div>
+</form>
 
         </div>
       </div>

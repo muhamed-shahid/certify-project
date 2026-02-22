@@ -37,7 +37,7 @@ exports.register = async (req,res)=>{
 
         res.status(200).json({
             success:true,
-            message:"Registratio9n successfull"
+            message:"Registration successfull"
         })
     }catch(err){
         console.error(err);
@@ -53,7 +53,7 @@ exports.register = async (req,res)=>{
 
 exports.login = async (req,res)=>{
     try{
-        const {email,password} = req.body
+        const {email,password,role} = req.body
         const user = await User.findOne({email})
 
         if(!user){
