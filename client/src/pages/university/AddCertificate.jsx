@@ -10,7 +10,7 @@ const AddCertificate = () => {
     certificateNumber:"",
     studentName:"",
     courseName:"",
-    universityName:"",
+    university:req.user.id,
     issueDate: new Date().toISOString().split("T")[0],
   })
 
@@ -25,7 +25,8 @@ const AddCertificate = () => {
   const handleSubmit = async(e)=>{
 
     try{
-      const res = await axios.post("http://localhost:5055/api/certificates/add",formData) 
+      const token = localStorage.getItem("token")
+      const res = await axios.post("http://localhost:5055/api/certificates/add",formData,{headers:{Authorization:`Bearer ${token}`}}) 
 
       toast.success(res.data.message)
       setError("")
@@ -34,7 +35,6 @@ const AddCertificate = () => {
         certificateNumber:"",
         studentName:"",
         courseName:"",
-        universityName:"",
         issueDate:new Date().toISOString().split("T")[0],
 
       })
@@ -57,7 +57,6 @@ const AddCertificate = () => {
                     <input className='w-full border p-2 rounded' placeholder='Certificate Number' name='certificateNumber' value={formData.certificateNumber} onChange={handleChange}/>
                     <input className='w-full border p-2 rounded' placeholder='Student Name'name='studentName' onChange={handleChange} value={formData.studentName}/>
                     <input className='w-full border p-2 rounded' placeholder='Course Name' name='courseName' onChange={handleChange} value={formData.courseName}/>
-                    <input className='w-full border p-2 rounded' placeholder='University Name' name='universityName' onChange={handleChange} value={formData.universityName}/>
                     <input className='w-full border p-2 rounded' type='date' name='issueDate' onChange={handleChange} value={formData.issueDate}/>  
                   <button type='button' onClick={handleSubmit} className='bg-gradient-to-r from-indigo-500 to-indigo-600 text-white px-6 py-2 rounded'>Generate Certificate</button>
 

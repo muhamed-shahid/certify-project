@@ -21,9 +21,10 @@ const certificateSchema= new mongoose.Schema({
     
     },
 
-    universityName:{
-        type: String,
-        reuired: true,
+    university:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required: true,
     },
 
     issueDate:{

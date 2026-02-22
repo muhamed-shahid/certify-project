@@ -87,7 +87,7 @@ exports.revokeCertificate = async (req,res)=>{
 
 exports.allCertficates = async (req,res)=>{
     try{
-        const certificates = await Certificate.find()
+        const certificates = await Certificate.find({university:req.user.id})
         res.status(200).json(certificates)
     }catch(error){
         console.error(error)
@@ -104,12 +104,12 @@ exports.addCertificate = async (req,res)=>{
             certificateNumber,
             studentName,
             courseName,
-            universityName,
+            university,
             issueDate,
         } = req.body;
 
 
-         if(!certificateNumber || !studentName || !courseName ||!universityName ||!issueDate){
+         if(!certificateNumber || !studentName || !courseName ||!university ||!issueDate){
            return res.status(400).json({
             success:false,
             message:"All fields are required",
@@ -129,7 +129,7 @@ exports.addCertificate = async (req,res)=>{
         certificateNumber,
         studentName,
         courseName,
-        universityName,
+        university:req.user.id,
         issueDate,
         status:"ACTIVE",
     })
