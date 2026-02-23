@@ -5,8 +5,8 @@ const Home = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 p-6">
       <div className="w-full max-w-4xl">
-        <header className="flex items-center justify-center mb-6">
-          <img src="/images/certify-logo.svg" alt="Certify logo" className="h-14 w-14 mr-3" />
+        <header className="flex items-center justify-center mb-6 bg-black rounded-2xl p-5">
+          <img src="/images/logo.png" alt="Certify logo" className="h-14 w-14 mr-3 " />
           <div className="text-center">
             <h1 className="text-3xl font-extrabold text-white">Certify</h1>
             <p className="text-sm text-indigo-100">Trusted Certificate Verification</p>
