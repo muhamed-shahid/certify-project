@@ -104,12 +104,11 @@ exports.addCertificate = async (req,res)=>{
             certificateNumber,
             studentName,
             courseName,
-            university,
             issueDate,
         } = req.body;
 
 
-         if(!certificateNumber || !studentName || !courseName ||!university ||!issueDate){
+         if(!certificateNumber || !studentName || !courseName ||!issueDate){
            return res.status(400).json({
             success:false,
             message:"All fields are required",

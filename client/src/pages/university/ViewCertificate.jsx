@@ -12,8 +12,11 @@ const ViewCertificate = () => {
   useEffect(() => {
     const fetchCertificates = async () => {
       try {
+        const token = localStorage.getItem("token")
         const res = await axios.get(
-          "http://localhost:5055/api/certificates"
+          "http://localhost:5055/api/certificates",{
+           headers:{Authorization:`Bearer ${token}`}
+          }
         );
         setCertificates(res.data);
       } catch (err) {

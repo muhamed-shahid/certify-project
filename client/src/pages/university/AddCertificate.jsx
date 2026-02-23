@@ -10,7 +10,6 @@ const AddCertificate = () => {
     certificateNumber:"",
     studentName:"",
     courseName:"",
-    university:req.user.id,
     issueDate: new Date().toISOString().split("T")[0],
   })
 
