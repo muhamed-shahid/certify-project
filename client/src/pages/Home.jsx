@@ -8,7 +8,7 @@ const Home = () => {
         <header className="flex items-center justify-center mb-6 bg-black rounded-2xl p-5">
           <img src="/images/logo.png" alt="Certify logo" className="h-14 w-14 mr-3 " />
           <div className="text-center">
-            <h1 className="text-3xl font-extrabold text-white">Certify</h1>
+            <h1 className="text-3xl font-poppins font-extrabold text-white">Certify</h1>
             <p className="text-sm text-indigo-100">Trusted Certificate Verification</p>
           </div>
         </header>
