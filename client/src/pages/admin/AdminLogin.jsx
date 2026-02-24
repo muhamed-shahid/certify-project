@@ -1,10 +1,25 @@
+import axios from 'axios'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [errors, setErrors] = useState({})
+  const [formData,setFormData] = useState({
+    email:"",
+    password:"",
+    role:"ADMIN"
+  })
+
+  const navigate = useNavigate()
+  const handleChange= (e)=>{
+    setFormData({...formData,[e.target.name]:e.target.value})
+  }
+
+
 
   const validate = () => {
     const errs = {}
@@ -14,13 +29,21 @@ const AdminLogin = () => {
     return errs
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault()
     const errs = validate()
     setErrors(errs)
     if (Object.keys(errs).length === 0) {
       // TODO: perform login API call
       console.log('Logging in', { email, password })
+    }
+
+
+    try{
+      const res = await axios.post("http://localhost:5055/api/auth/login",formData)
+      localStorage.setItem("token",res.data.token)
+      toast.success("Login successfull")
+      navigate("/admin/dahsboard")
     }
   }
 
