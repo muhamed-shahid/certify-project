@@ -4,8 +4,6 @@ import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [errors, setErrors] = useState({})
   const [formData,setFormData] = useState({
@@ -23,7 +21,7 @@ const AdminLogin = () => {
 
   const validate = () => {
     const errs = {}
-    if (!email) errs.email = 'Email is required'
+    if (!formData.email) errs.email = 'Email is required'
     else if (!/^\S+@\S+\.\S+$/.test(email)) errs.email = 'Enter a valid email'
     if (!password) errs.password = 'Password is required'
     return errs
@@ -44,6 +42,11 @@ const AdminLogin = () => {
       localStorage.setItem("token",res.data.token)
       toast.success("Login successfull")
       navigate("/admin/dahsboard")
+    }
+    catch(err){
+      console.log(err);
+      toast.error(err.response?.data?.message||"Login failed")
+      
     }
   }
 
@@ -83,8 +86,9 @@ const AdminLogin = () => {
               <div className="mt-1 relative">
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name='email'
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="admin@certify.com"
                   className={`w-full rounded-lg border px-4 py-2 focus:outline-none focus:ring-2 ${errors.email ? 'border-red-400 focus:ring-red-200' : 'border-slate-200 focus:ring-blue-200'}`}
                   aria-invalid={errors.email ? 'true' : 'false'}
@@ -98,8 +102,9 @@ const AdminLogin = () => {
               <div className="mt-1 relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formData.password}
+                  onChange={handleChange}
+                  name='password'
                   placeholder="••••••••"
                   className={`w-full rounded-lg border px-4 py-2 pr-12 focus:outline-none focus:ring-2 ${errors.password ? 'border-red-400 focus:ring-red-200' : 'border-slate-200 focus:ring-blue-200'}`}
                   aria-invalid={errors.password ? 'true' : 'false'}
