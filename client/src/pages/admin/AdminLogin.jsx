@@ -22,8 +22,8 @@ const AdminLogin = () => {
   const validate = () => {
     const errs = {}
     if (!formData.email) errs.email = 'Email is required'
-    else if (!/^\S+@\S+\.\S+$/.test(email)) errs.email = 'Enter a valid email'
-    if (!password) errs.password = 'Password is required'
+    else if (!/^\S+@\S+\.\S+$/.test(formData.email)) errs.email = 'Enter a valid email'
+    if (!formData.password) errs.password = 'Password is required'
     return errs
   }
 
@@ -31,17 +31,17 @@ const AdminLogin = () => {
     e.preventDefault()
     const errs = validate()
     setErrors(errs)
-    if (Object.keys(errs).length === 0) {
+    if (Object.keys(errs).length !== 0) return
       // TODO: perform login API call
-      console.log('Logging in', { email, password })
-    }
+      
+    
 
 
     try{
       const res = await axios.post("http://localhost:5055/api/auth/login",formData)
       localStorage.setItem("token",res.data.token)
       toast.success("Login successfull")
-      navigate("/admin/dahsboard")
+      navigate("/admin/dashboard")
     }
     catch(err){
       console.log(err);
@@ -49,7 +49,7 @@ const AdminLogin = () => {
       
     }
   }
-
+  
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 py-12">
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl overflow-hidden grid md:grid-cols-2">
