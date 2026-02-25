@@ -1,5 +1,5 @@
 const Certificate = require("../models/Certificate")
-const certificate = require("../models/Certificate")
+
 
 exports.verifyCertificate = async (req,res)=>{
     try{
@@ -152,3 +152,5 @@ exports.addCertificate = async (req,res)=>{
 
    
 }
+
+

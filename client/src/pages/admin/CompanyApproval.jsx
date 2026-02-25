@@ -1,36 +1,18 @@
 import React, { useState } from "react";
 import AdminSideBar from "../../components/AdminSideBar";
 import AdminHeader from "../../components/AdminHeader";
+import axios from "axios";
+import toast from "react-hot-toast"
 
-const initialCompanies = [
-  {
-    id: 1,
-    name: "ABC Technologies",
-    email: "abcpvtltd@gmail.com",
-    status: "Pending",
-  },
-  {
-    id: 2,
-    name: "XYZ Technologies",
-    email: "xyzpvtltd@gmail.com",
-    status: "Pending",
-  },
-  {
-    id: 3,
-    name: "LMN Technologies",
-    email: "lmnpvtltd@gmail.com",
-    status: "Pending",
-  },
-];
 
 const CompanyApproval = () => {
-  const [companies, setCompanies] = useState(initialCompanies);
+  const [companies, setCompanies] = useState([]);
 
   /* ---------- UPDATE STATUS ---------- */
-  const updateStatus = (id, newStatus) => {
+  const updateStatus = (_id, newStatus) => {
     setCompanies((prev) =>
-      prev.map((cmp) =>
-        cmp.id === id ? { ...cmp, status: newStatus } : cmp
+      prev.map((companies) =>
+        companies._id === _id ? { ...companies, status: newStatus } : companies
       )
     );
   };
@@ -44,20 +26,20 @@ const CompanyApproval = () => {
 
   /* ---------- MODAL STATES ---------- */
   const [confirmBox, setConfirmBox] = useState(false);
-  const [actionType, setActionType] = useState(null); // approve | reject
+  const [actionType, setActionType] = useState(null); // Approve | Reject
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [reason, setReason] = useState("");
 
   /* ---------- OPEN MODALS ---------- */
   const openApproveBox = (company) => {
     setSelectedCompany(company);
-    setActionType("approve");
+    setActionType("Approve");
     setConfirmBox(true);
   };
 
   const openRejectBox = (company) => {
     setSelectedCompany(company);
-    setActionType("reject");
+    setActionType("Reject");
     setReason("");
     setConfirmBox(true);
   };
@@ -66,10 +48,10 @@ const CompanyApproval = () => {
   const updateBox = () => {
     if (!selectedCompany) return closeBox();
 
-    if (actionType === "approve") {
-      updateStatus(selectedCompany.id, "Approved");
-    } else if (actionType === "reject") {
-      updateStatus(selectedCompany.id, "Rejected");
+    if (actionType === "Approve") {
+      updateStatus(selectedCompany._id, "APPROVED");
+    } else if (actionType === "Reject") {
+      updateStatus(selectedCompany._id, "REJECTED");
     }
 
     closeBox();
@@ -82,6 +64,17 @@ const CompanyApproval = () => {
     setSelectedCompany(null);
     setReason("");
   };
+
+
+  const fetchCompanies = async ()=>{
+    try{
+      const res = await axios.get("http://localhost:5055/api/companies",companies)
+
+      setCompanies(res.data)
+    }catch(err){
+      toast.error("Server error! Please try again later.")
+    }
+  }
 
   return (
     <div className="flex">
@@ -109,7 +102,7 @@ const CompanyApproval = () => {
               <tbody>
                 {companies.map((cmp) => (
                   <tr
-                    key={cmp.id}
+                    key={cmp._id}
                     className="border-t hover:bg-slate-50"
                   >
                     <td className="px-4 py-3">{cmp.name}</td>
@@ -140,13 +133,13 @@ const CompanyApproval = () => {
                       {cmp.status === "Pending" ? (
                         <div className="flex gap-2">
                           <button
-                            onClick={() => openApproveBox(cmp)}
+                            onClick={() => openApproveBox(companies)}
                             className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-4 py-2 rounded-3xl shadow-md transition"
                           >
                             Approve
                           </button>
                           <button
-                            onClick={() => openRejectBox(cmp)}
+                            onClick={() => openRejectBox(companies)}
                             className="bg-gradient-to-r from-rose-500 to-red-600
              hover:from-rose-600 hover:to-red-700
              text-white px-5 py-2 rounded-3xl
@@ -178,7 +171,7 @@ const CompanyApproval = () => {
 
             <div className="relative bg-white rounded-lg shadow-xl w-full max-w-md p-6 z-10">
               <h3 className="text-lg font-semibold mb-2">
-                {actionType === "approve"
+                {actionType === "Approve"
                   ? "Confirm Approval"
                   : "Confirm Rejection"}
               </h3>
@@ -188,7 +181,7 @@ const CompanyApproval = () => {
                 <b>{selectedCompany?.name}</b>?
               </p>
 
-              {actionType === "reject" && (
+              {actionType === "Reject" && (
                 <textarea
                   value={reason}
                   onChange={(e) => setReason(e.target.value)}
