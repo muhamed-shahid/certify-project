@@ -23,3 +23,14 @@ exports.protect = (req,res,next)=>{
         
     }
 }
+
+
+exports.adminOnly = (req,res,next)=>{
+    if(req.user.role !== "ADMIN"){
+        return res.status(401).json({
+                success:false,
+                message:"Access denied. Admin only",
+            })
+    }
+    next()
+}

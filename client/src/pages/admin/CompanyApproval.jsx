@@ -74,7 +74,7 @@ const CompanyApproval = () => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5055/api/admin/companies/${selectedCompany._id}`,
+        `http://localhost:5055/api/admin/companies/:${selectedCompany._id}`,
         {
           status: actionType,
           reason,
