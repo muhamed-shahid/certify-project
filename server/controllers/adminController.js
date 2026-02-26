@@ -68,3 +68,74 @@ exports.updateCompanyStaus = async (req,res)=>{
         })
     }
 }
+
+
+exports.allUniversities = async (req,res)=>{
+   try{
+     const universities = await user.find({role:"UNIVERSITY"})
+    return res.status(201).json({
+        success:true,
+        data:universities,
+    })
+   }catch(err){
+    console.error(err);
+    res.status(500).json({
+        success:false,
+        message:"Server error",
+    })
+    
+   }
+}
+
+
+
+
+exports.updateUniversityStaus = async (req,res) =>{
+    try{
+        const {id} = req.params
+
+        const { status } = req.body
+        const allowedStatus = ["APPROVED","REJECTED"]
+        if(!allowedStatus.includes(status)){
+            return res.status(401).json({
+                success:false,
+                message:"Invalid status value",
+            })
+
+        }
+
+        const university = await user.findById(id)
+
+        if(!university){
+            return res.status(404).json({
+                success:false,
+                message:"University not found",
+            })
+        }
+
+
+        if(university.role !== "UNIVERSITY"){
+            return res.status(403).json({
+                success:false,
+                message:"User is not a university"
+
+            })
+        }
+
+        university.status = status
+        await university.save()
+
+        res.status(200).json({
+            success:true,
+            message:`University ${status.toLowerCase()} successfully`,
+            data:university
+        })
+    }catch(err){
+        console.error(err);
+        res.status(500).json({
+            success:false,
+            message:"Server error",
+        })
+        
+    }
+}
