@@ -56,7 +56,7 @@ exports.updateCompanyStaus = async (req,res)=>{
 
         res.status(200).json({
             success:false,
-            message:`Company ${status.toLoweCase()} successfully`,
+            message:`Company ${status.toLowerCase()} successfully`,
             data: company,
         })
     } catch (err){

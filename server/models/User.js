@@ -30,7 +30,7 @@ const UserSchema =new mongoose.Schema({
 
     status:{
         type:String,
-        enum:["PENDING","APPROVED"],
+        enum:["PENDING","APPROVED","REJECTED"],
         default:"PENDING",
     }
 },
