@@ -154,3 +154,41 @@ exports.addCertificate = async (req,res)=>{
 }
 
 
+
+exports.certificateDash = async(req,res)=>{
+    try{
+        const universityId = req.user.id
+        const IssuedCertificates = await Certificate.countDocuments({
+            university:universityId,            
+        })
+
+        const activeCertificates = await Certificate.countDocuments({
+            university:universityId,
+            status:"ACTIVE",
+        })
+
+        const revokedCertificates = await Certificate.countDocuments({
+            university:universityId,
+            status:"REVOKED",
+        })
+
+
+        res.status(201).json({
+            success:true,
+            data:{
+                IssuedCertificates,
+                activeCertificates,
+                revokedCertificates,
+            }
+        })
+    }catch(err){
+        console.error(err);
+        res.status(500).json({
+            success:false,
+            message:"Cannot load data"
+        })
+        
+    }
+}
+
+
