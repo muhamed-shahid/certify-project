@@ -1,5 +1,5 @@
 const user = require("../models/User")
-
+const certificates = require("../models/Certificate")
 exports.allCompanies = async (req,res)=>{
     try{
         const companies = await user.find({role:"COMPANY"})
@@ -135,6 +135,37 @@ exports.updateUniversityStaus = async (req,res) =>{
         res.status(500).json({
             success:false,
             message:"Server error",
+        })
+        
+    }
+}
+
+
+exports.adminDash = async (req,res) =>{
+    try{
+        const universityCounts = await user.countDocuments({
+            role:"UNIVERSITY"
+        })
+
+        const companyCounts = await user.countDocuments({
+            role:"COMPANY"
+        })
+
+        const certificateCounts = await certificates.countDocuments()
+
+        res.status(200).json({
+            success:true,
+            data:{
+                universities:universityCounts,
+                companies:companyCounts,
+                certificates:certificateCounts,
+            }
+        })
+    }catch(err){
+        console.error(err);
+        res.status(500).json({
+            success:false,
+            message:"Server error"
         })
         
     }

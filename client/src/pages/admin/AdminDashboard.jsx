@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminSideBar from '../../components/AdminSideBar'
 import AdminHeader from '../../components/AdminHeader'
 
 const AdminDashboard = () => {
+
+  const [stats,getstats] = useState({
+    universities:0,
+    companies:0,
+    certificates:0,
+  })
+
+  const token = localStorage.getItem("token")
+
+
+  useEffect (()=>{
+    
+  })
   return (
     <div className='flex'>
       <AdminSideBar/>
