@@ -64,7 +64,7 @@ const VerifyCertificate = () => {
                     <div className="mt-2 text-sm text-slate-600">
                       <p><b>Student:</b> {result.data.studentName}</p>
                       <p><b>Course:</b> {result.data.courseName}</p>
-                      <p><b>University:</b> {result.data.universityName}</p>
+                      <p><b>University:</b> {result.data.university?.name}</p>
                     </div>
                   </div>
                    ) : result.message === "Certificate is revoked" ? (

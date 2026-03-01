@@ -12,7 +12,7 @@ exports.verifyCertificate = async (req,res)=>{
             })
         }
 
-         const certificate = await Certificate.findOne({ certificateNumber })
+         const certificate = await Certificate.findOne({ certificateNumber }).populate("university","name")
 
     if (!certificate){
         return res.status(404).json({
