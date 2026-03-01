@@ -7,6 +7,8 @@ const ViewCertificate = () => {
 
   const [certificates, setCertificates] = useState([]);
   const [error, setError] = useState("");
+  const [confirmBox,setConfirmBox] = useState(false)
+  const [selectedId,setSelectedId] = useState(null)
 
   // 🔹 Fetch certificates on page load
   useEffect(() => {
@@ -28,19 +30,36 @@ const ViewCertificate = () => {
   }, []);
 
   // 🔹 Revoke certificate (UI only for now)
-  const revokeCertificate = (id) => {
-    const confirmRevoke = window.confirm(
-      "Are you sure you want to revoke this certificate?"
-    );
+const openConfirmBox = (id)=>{
+  setSelectedId(id);
+  setConfirmBox(true);
+}
 
-    if (!confirmRevoke) return;
+const closeConfirmBox = ()=>{
+  setSelectedId(null);
+  setConfirmBox(false)
+  
+}
 
-    setCertificates((prev) =>
-      prev.map((cert) =>
-        cert._id === id ? { ...cert, status: "REVOKED" } : cert
-      )
-    );
-  };
+const confirmRevoke = async ()=>{
+  try{
+    const token = localStorage.getItem("token")
+
+    await axios.put(`http://localhost:5055/api/certificates/revoke/${selectedId}`,{},{headers:{
+      Authorization:`Bearer ${token}`
+    }
+  })
+  setCertificates(prev =>
+    prev.map(cert=>
+      cert._id === selectedId
+      ?{...cert,status:"REVOKED"}:cert
+    )
+  )
+  closeConfirmBox()
+  } catch{
+    setError("Failed to revoke")
+  }
+}
 
   // 🔹 Status badge helper
   const getStatusBadge = (status) => {
@@ -97,7 +116,7 @@ const ViewCertificate = () => {
                     <td className="p-3">
                       {cert.status === "ACTIVE" ? (
                         <button
-                          onClick={() => revokeCertificate(cert._id)}
+                          onClick={() => openConfirmBox(cert._id)}
                           className="bg-gradient-to-r from-red-500 to-red-600
                                      hover:from-red-600 hover:to-red-700
                                      text-white px-4 py-1 rounded
@@ -118,6 +137,47 @@ const ViewCertificate = () => {
           </div>
 
         </div>
+
+        {confirmBox && (
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+
+    <div
+      className="absolute inset-0 bg-black/40"
+      onClick={closeConfirmBox}
+    />
+
+    <div className="bg-white p-6 rounded-lg shadow-lg z-10">
+
+      <h3 className="text-lg font-semibold mb-3">
+        Confirm Revoke
+      </h3>
+
+      <p className="mb-4">
+        Are you sure you want to revoke this certificate?
+      </p>
+
+      <div className="flex justify-end gap-3">
+
+        <button
+          onClick={closeConfirmBox}
+          className="px-4 py-2 border rounded"
+        >
+          Cancel
+        </button>
+
+        <button
+          onClick={confirmRevoke}
+          className="px-4 py-2 bg-red-600 text-white rounded"
+        >
+          Confirm
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+)}
       </div>
     </div>
   );

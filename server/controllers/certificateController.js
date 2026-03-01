@@ -158,16 +158,16 @@ exports.addCertificate = async (req,res)=>{
 exports.certificateDash = async(req,res)=>{
     try{
         const universityId = req.user.id
-        const IssuedCertificates = await Certificate.countDocuments({
+        const total = await Certificate.countDocuments({
             university:universityId,            
         })
 
-        const activeCertificates = await Certificate.countDocuments({
+        const active = await Certificate.countDocuments({
             university:universityId,
             status:"ACTIVE",
         })
 
-        const revokedCertificates = await Certificate.countDocuments({
+        const revoked = await Certificate.countDocuments({
             university:universityId,
             status:"REVOKED",
         })
@@ -176,9 +176,9 @@ exports.certificateDash = async(req,res)=>{
         res.status(201).json({
             success:true,
             data:{
-                IssuedCertificates,
-                activeCertificates,
-                revokedCertificates,
+                total,
+                active,
+                revoked,
             }
         })
     }catch(err){
