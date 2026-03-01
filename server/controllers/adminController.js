@@ -17,7 +17,7 @@ exports.allCompanies = async (req,res)=>{
     }
 }
 
-exports.updateCompanyStaus = async (req,res)=>{
+exports.updateCompanyStatus = async (req,res)=>{
     try{
         const {id}=req.params
         const { status } = req.body
@@ -52,6 +52,20 @@ exports.updateCompanyStaus = async (req,res)=>{
 
 
         company.status = status
+
+         if (status === "REJECTED") {
+
+      company.rejectionReason =
+        reason && reason.trim() !== ""
+          ? reason
+          : "No reason provided";
+
+    } else {
+
+      // clear reason if approved
+      company.rejectionReason = "";
+
+    }
         await company.save()
 
         res.status(200).json({
@@ -90,11 +104,11 @@ exports.allUniversities = async (req,res)=>{
 
 
 
-exports.updateUniversityStaus = async (req,res) =>{
+exports.updateUniversityStatus = async (req,res) =>{
     try{
         const {id} = req.params
 
-        const { status } = req.body
+        const { status,reason } = req.body
         const allowedStatus = ["APPROVED","REJECTED"]
         if(!allowedStatus.includes(status)){
             return res.status(401).json({
@@ -123,6 +137,20 @@ exports.updateUniversityStaus = async (req,res) =>{
         }
 
         university.status = status
+
+         if (status === "REJECTED") {
+
+      university.rejectionReason =
+        reason && reason.trim() !== ""
+          ? reason
+          : "No reason provided";
+
+    } else {
+
+      // clear reason if approved
+      university.rejectionReason = "";
+
+    }
         await university.save()
 
         res.status(200).json({

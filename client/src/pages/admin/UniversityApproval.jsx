@@ -80,7 +80,7 @@ const UniversityApproval = () => {
         const res = await axios.put(`http://localhost:5055/api/admin/university/${selectedUniversity._id}`,
       {
         status: actionType,
-        reason: reason || ""
+        rejectionReason: reason || ""
       },
       {
         headers: {

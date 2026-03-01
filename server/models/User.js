@@ -32,6 +32,11 @@ const UserSchema =new mongoose.Schema({
         type:String,
         enum:["PENDING","APPROVED","REJECTED"],
         default:"PENDING",
+    },
+
+    rejectionReason:{
+        type:String,
+        default:"",
     }
 },
 {timestamps:true}

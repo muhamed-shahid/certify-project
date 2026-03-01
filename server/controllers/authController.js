@@ -71,10 +71,17 @@ exports.login = async (req,res)=>{
             })
         }
 
-        if(user.status !== "APPROVED"){
+        if(user.status === "PENDING"){
             return res.status(401).json({
                 success:false,
                 message:"Account not approved yet",
+            })
+        }
+
+        if(user.status === "REJECTED"){
+            return res.status(401).json({
+                success:false,
+                message:`Your account is rejected. Reason: ${user.rejectionReason}`,
             })
         }
 

@@ -128,7 +128,7 @@ const CompanyApproval = () => {
       `http://localhost:5055/api/admin/company/${selectedCompany._id}`,
       {
         status: actionType,
-        reason: reason || ""
+        rejectionReason: reason || ""
       },
       {
         headers: {
