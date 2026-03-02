@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {Link,useNavigate} from "react-router-dom"
-import axios from "axios"
+import API from '../../services/api'
 import toast from "react-hot-toast"
 
 const CompanyRegister = () => {
@@ -37,7 +37,7 @@ const CompanyRegister = () => {
         return
     }
     try{
-        const res =  await axios.post("http://localhost:5055/api/auth/register",{name:companyName,email,password,role})
+        const res =  await API.post("/api/auth/register",{name:companyName,email,password,role})
         toast.success(res.data.message)
 
         setFormData({

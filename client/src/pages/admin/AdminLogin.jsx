@@ -1,7 +1,7 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import API from '../../services/api'
 
 const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -38,7 +38,7 @@ const AdminLogin = () => {
 
 
     try{
-      const res = await axios.post("http://localhost:5055/api/auth/login",formData)
+      const res = await API.post("/api/auth/login",formData)
       localStorage.setItem("token",res.data.token)
       toast.success("Login successfull")
       navigate("/admin/dashboard")

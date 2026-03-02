@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AdminSideBar from '../../components/AdminSideBar'
 import AdminHeader from '../../components/AdminHeader'
-import axios from 'axios'
+import API from '../../services/api'
 import toast from 'react-hot-toast'
 
 
@@ -26,7 +26,7 @@ const UniversityApproval = () => {
             try{
                 setLoading(true)
 
-                const res = await axios.get("http://localhost:5055/api/admin/universities",{headers:{Authorization:`Bearer ${token}`,
+                const res = await API.get("/api/admin/universities",{headers:{Authorization:`Bearer ${token}`,
                 },
             })
 
@@ -77,7 +77,7 @@ const UniversityApproval = () => {
   const handleStatusUpdate = async ()=>{
     if(!selectedUniversity) return
     try{
-        const res = await axios.put(`http://localhost:5055/api/admin/university/${selectedUniversity._id}`,
+        const res = await API.put(`/api/admin/university/${selectedUniversity._id}`,
       {
         status: actionType,
         reason: reason || ""

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import AdminSideBar from '../../components/AdminSideBar'
 import AdminHeader from '../../components/AdminHeader'
-import axios from "axios"
 import toast from "react-hot-toast"
+import API from '../../services/api'
 
 const AdminDashboard = () => {
 
@@ -18,7 +18,7 @@ const AdminDashboard = () => {
   useEffect (()=>{
     const fetchstats = async ()=>{
       try{
-        const res = await axios.get("http://localhost:5055/api/admin/dashboard",{
+        const res = await API.get("/api/admin/dashboard",{
           headers:{
             Authorization: `Bearer ${token}`
           }

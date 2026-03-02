@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from '../../services/api';
 import UniversityHeader from "../../components/UniversityHeader";
 import UniversitySidebar from "../../components/UniversitySidebar";
 
@@ -15,8 +15,8 @@ const ViewCertificate = () => {
     const fetchCertificates = async () => {
       try {
         const token = localStorage.getItem("token")
-        const res = await axios.get(
-          "http://localhost:5055/api/certificates",{
+        const res = await API.get(
+          "/api/certificates",{
            headers:{Authorization:`Bearer ${token}`}
           }
         );
@@ -45,7 +45,7 @@ const confirmRevoke = async ()=>{
   try{
     const token = localStorage.getItem("token")
 
-    await axios.put(`http://localhost:5055/api/certificates/revoke/${selectedId}`,{},{headers:{
+    await API.put(`/api/certificates/revoke/${selectedId}`,{},{headers:{
       Authorization:`Bearer ${token}`
     }
   })

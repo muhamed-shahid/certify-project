@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import UniversitySidebar from "../../components/UniversitySidebar";
 import UniversityHeader from '../../components/UniversityHeader';
-import axios from "axios"
+import API from '../../services/api'
 import toast from 'react-hot-toast';
 
 const UniversityDashboard = () => {
@@ -17,7 +17,7 @@ const UniversityDashboard = () => {
      const fetchstats = async ()=>{
    try{
     
-      const res = await axios.get("http://localhost:5055/api/certificates/dashboard",{headers:{
+      const res = await API.get("/api/certificates/dashboard",{headers:{
         Authorization:`Bearer ${token}`
       }})
       setStats(res.data.data)  

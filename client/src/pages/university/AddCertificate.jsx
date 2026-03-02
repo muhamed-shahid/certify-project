@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import UniversitySidebar from '../../components/UniversitySidebar'
 import UniversityHeader from '../../components/UniversityHeader'
-import axios from "axios"
+import API from '../../services/api'
 import toast from "react-hot-toast"
 
 const AddCertificate = () => {
@@ -25,7 +25,7 @@ const AddCertificate = () => {
 
     try{
       const token = localStorage.getItem("token")
-      const res = await axios.post("http://localhost:5055/api/certificates/add",formData,{headers:{Authorization:`Bearer ${token}`}}) 
+      const res = await API.post("/api/certificates/add",formData,{headers:{Authorization:`Bearer ${token}`}}) 
 
       toast.success(res.data.message)
       setError("")

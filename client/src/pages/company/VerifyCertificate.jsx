@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from '../../services/api';
 import CompanySidebar from "../../components/CompanySidebar";
 import CompanyHeader from "../../components/CompanyHeader";
 
@@ -10,8 +10,8 @@ const VerifyCertificate = () => {
 
   const handleVerify = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:5055/api/certificates/verify",
+      const res = await API.post(
+        "/api/certificates/verify",
         { certificateNumber }
       );
       setResult(res.data);

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"
+import API from '../../services/api'
 import toast from "react-hot-toast"
 
 
@@ -24,7 +24,7 @@ const CompanyLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const res = await axios.post("http://localhost:5055/api/auth/login",formData)
+      const res = await API.post("/api/auth/login",formData)
       localStorage.setItem("token",res.data.token)
       toast.success("Login successfull")
       navigate("/company/dashboard")

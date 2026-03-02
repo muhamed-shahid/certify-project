@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AdminSideBar from "../../components/AdminSideBar";
 import AdminHeader from "../../components/AdminHeader";
-import axios from "axios";
+import API from '../../services/api';
 import toast from "react-hot-toast";
 
 const CompanyApproval = () => {
@@ -33,8 +33,8 @@ const CompanyApproval = () => {
 
         setLoading(true);
 
-        const res = await axios.get(
-          "http://localhost:5055/api/admin/companies",
+        const res = await API.get(
+          "/admin/companies",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -124,8 +124,8 @@ const CompanyApproval = () => {
 
   try {
 
-    const res = await axios.put(
-      `http://localhost:5055/api/admin/company/${selectedCompany._id}`,
+    const res = await API.put(
+      `/admin/company/${selectedCompany._id}`,
       {
         status: actionType,
         reason: reason || ""
