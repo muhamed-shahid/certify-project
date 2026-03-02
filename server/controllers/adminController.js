@@ -20,7 +20,7 @@ exports.allCompanies = async (req,res)=>{
 exports.updateCompanyStatus = async (req,res)=>{
     try{
         const {id}=req.params
-        const { status } = req.body
+        const { status,reason } = req.body
         const allowedStatus = ["APPROVED","REJECTED"]
         if(!allowedStatus.includes(status)){
             return res.status(401).json({
