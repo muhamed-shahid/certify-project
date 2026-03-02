@@ -56,11 +56,11 @@ const AdminLogin = () => {
         {/* Left illustration / brand panel */}
         <div className="hidden md:flex items-center justify-center bg-gradient-to-tr from-blue-600 to-indigo-600 p-10">
           <div className="text-white text-center">
-            <svg width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            {/* <svg width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
               <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(255,255,255,0.12)"/>
               <path d="M7 14c1.333-2 3.333-3 5-3s3.667 1 5 3" stroke="white" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M12 8v2" stroke="white" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
+            </svg> */}
             <h3 className="mt-6 text-2xl font-bold">Certify Admin</h3>
             <p className="mt-2 opacity-90 max-w-xs">Manage institutions, approvals and certificates securely from a single dashboard.</p>
           </div>
@@ -70,9 +70,10 @@ const AdminLogin = () => {
         <div className="p-8 md:p-10">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-md bg-blue-50 flex items-center justify-center">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+              {/* <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
                 <path d="M3 7a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke="#0f172a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              </svg> */}
+              <img src="/images/logo.png" alt="Certify logo" className="h-15 w-15 mr-3 " />
             </div>
             <div>
               <h2 className="text-2xl font-semibold text-slate-800">Admin sign in</h2>
@@ -133,13 +134,7 @@ const AdminLogin = () => {
               {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password}</p>}
             </div>
 
-            <div className="flex items-center justify-between text-sm">
-              <label className="inline-flex items-center gap-2 text-slate-600">
-                <input type="checkbox" className="h-4 w-4 rounded border-slate-300" />
-                Remember me
-              </label>
-              <a href="#" className="text-blue-600 hover:underline">Forgot password?</a>
-            </div>
+           
 
             <div>
               <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition">Sign in</button>
