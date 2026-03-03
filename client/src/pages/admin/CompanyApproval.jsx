@@ -125,7 +125,7 @@ const CompanyApproval = () => {
   try {
 
     const res = await API.put(
-      `/admin/company/${selectedCompany._id}`,
+      `/api/admin/company/${selectedCompany._id}`,
       {
         status: actionType,
         reason: reason || ""
