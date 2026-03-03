@@ -38,7 +38,7 @@ const UniversitySidebar = () => {
             <p className="text-gray-600 mb-6">Are you sure you want to logout?</p>
             <div className="flex gap-4">
               <button
-                onClick={() => setShowLogoutModal(false)}
+                onClick={()=>setShowLogout(false)}
                 className="flex-1 px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 font-semibold"
               >
                 Cancel

@@ -34,7 +34,7 @@ const CompanyApproval = () => {
         setLoading(true);
 
         const res = await API.get(
-          "/admin/companies",
+          "/api/admin/companies",
           {
             headers: {
               Authorization: `Bearer ${token}`,
