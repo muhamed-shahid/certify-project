@@ -54,6 +54,14 @@ const UniversityLogin = () => {
                     border border-white/20
                     shadow-2xl text-white">
 
+      <Link to="/" className="absolute top-5 left-5">
+  <img
+    src="/images/uni.png"
+    alt="Home"
+    className="w-10 h-10 hover:scale-110 transition"
+  />
+</Link>
+
       <h2 className="text-center text-xl font-semibold mb-8">
         University Login
       </h2>
@@ -119,6 +127,11 @@ const UniversityLogin = () => {
           >
             Register
           </Link>
+
+          <p className="text-center text-xs text-gray-400 mt-6">
+          © 2026 Certificate Verification System
+        </p>
+
         </div>
 
       </form>
