@@ -128,13 +128,14 @@ const UniversityLogin = () => {
             Register
           </Link>
 
-          <p className="text-center text-xs text-gray-400 mt-6">
-          © 2026 Certificate Verification System
-        </p>
+          
 
         </div>
 
       </form>
+      <p className="text-center text-xs text-gray-400 mt-6">
+          © 2026 Certificate Verification System
+        </p>
     </div>
   </div>
   );
