@@ -81,7 +81,8 @@ exports.login = async (req,res)=>{
         if(user.status === "REJECTED"){
             return res.status(401).json({
                 success:false,
-                message:`Your account is rejected. Reason: ${user.rejectionReason}`,
+                message:`Your account is rejected. 
+                          Reason: ${user.rejectionReason}`,
             })
         }
 

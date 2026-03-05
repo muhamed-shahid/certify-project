@@ -51,6 +51,13 @@ const CompanyLogin = () => {
                       border border-white/20 shadow-2xl 
                       rounded-2xl w-full max-w-md p-8 text-white">
 
+       <Link to="/" className="absolute top-5 left-5">
+  <img
+    src="/images/home.png"
+    alt="Home"
+    className="w-10 h-10 hover:scale-110 transition"
+  />
+</Link>
         <h2 className="text-2xl font-bold text-center mb-2">
           Company Portal
         </h2>
