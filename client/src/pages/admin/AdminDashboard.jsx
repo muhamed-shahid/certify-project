@@ -35,21 +35,21 @@ const AdminDashboard = () => {
     <div className='flex'>
       <AdminSideBar/>
 
-      <div className="flex-1">
+      <div className="flex-1 min-h-screen bg-slate-100">
         <AdminHeader/>
 
         <div className="p-6 grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl shadow">
+          <div className="bg-white rounded-xl shadow p-5">
             <h3 className="text-slate-600">Universities</h3>
             <p className="text-3xl font-bold">{stats.universities}</p>
 
             </div>
-          <div className="bg-white rounded-xl shadow mt-5">
+          <div className="bg-white rounded-xl shadow mt-5 p-5">
             <h3 className="text-slate-600">Companies</h3>
             <p className="text-3xl font-bold">{stats.companies}</p>
 
             </div>
-          <div className="bg-white rounded-xl shadow mt-5">
+          <div className="bg-white rounded-xl shadow mt-5 p-5">
             <h3 className="text-slate-600">Certificates</h3>
             <p className="text-3xl font-bold">{stats.certificates}</p>
 
